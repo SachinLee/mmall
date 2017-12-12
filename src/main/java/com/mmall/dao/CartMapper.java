@@ -1,5 +1,9 @@
 package com.mmall.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.mmall.pojo.Cart;
 
 public interface CartMapper {
@@ -14,4 +18,14 @@ public interface CartMapper {
     int updateByPrimaryKeySelective(Cart record);
 
     int updateByPrimaryKey(Cart record);
+    
+    Cart selectCartByUserIdAndProductId(@Param("userId") Integer userId, @Param("productId") Integer productId);
+    
+    List<Cart> selectCartByUserId(Integer userId);
+    
+    int selectCartProductCheckedStatusByUserId(Integer userId);
+    
+    int deleteCartByUserIdAndProductId(@Param("userId") Integer userId, @Param("productIds") List<String> productIds);
+
+    List<Cart> selectCheckedCartByUserId(Integer userId);
 }
